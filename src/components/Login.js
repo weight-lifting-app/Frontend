@@ -7,8 +7,8 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: 'cash',
-            password: 'pass'
+            username: 'Cash Globe',
+            password: 'password'
         }
     }
     handleInput = e => {
@@ -29,16 +29,6 @@ class Login extends React.Component {
         })
     }
 
-    // submitLogin = (event, user) => {
-    //     event.preventDefault();
-
-    //     axios.post('http://localhost:5000/api/auth/login', user)
-    //     .then(res => {
-    //         localStorage.setItem('token', res.data.token);
-    //         this.props.history.push('/users')
-    //     })
-    //     .catch(err => console.log(err))
-    // };
 
 
     render() {

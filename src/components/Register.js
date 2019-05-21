@@ -7,9 +7,9 @@ class Register extends React.Component {
         this.state = {
             username: "",
             password: "",
-            age: "",
+            age: undefined,
             height: "",
-            weight: "",
+            weight: undefined,
             gender: "",
             email: ""
         }
@@ -32,9 +32,9 @@ class Register extends React.Component {
             this.setState({
                 username: "",
                 password: "",
-                age: "",
+                age: undefined,
                 height: "",
-                weight: "",
+                weight: undefined,
                 gender: "",
                 email: ""
             })
@@ -66,7 +66,7 @@ class Register extends React.Component {
                         onChange={this.handleInput}
                         />
                         <input 
-                        type="text"
+                        type="number"
                         placeholder='Age'
                         name="age"
                         value={this.state.age}
@@ -80,7 +80,7 @@ class Register extends React.Component {
                         onChange={this.handleInput}
                         />
                         <input 
-                        type="text"
+                        type="number"
                         placeholder='Weight (Lbs)'
                         name="weight"
                         value={this.state.weight}
