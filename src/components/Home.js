@@ -31,7 +31,10 @@ class Home extends React.Component {
     // deleteExercise = exercise => {
         
     // }
-
+    handleDelete = e => {
+        e.preventDefault();
+        this.props.deleteItem(this.props.exercises.id);
+    }
 
     render() {
         return (
@@ -51,7 +54,7 @@ class Home extends React.Component {
                             <h3>Reps: {exercise.reps}</h3>
                             <h3>Weight Lifted: {exercise.amount_lifted}</h3>
                             <h4>Last Completion: {exercise.date}</h4>
-                            <button /*onClick={this.deleteHandler}*/>Delete Workout</button>
+                            <button onClick={this.handleDelete}>Delete Workout</button>
                         </div>
                     }
                     })}

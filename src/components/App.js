@@ -75,6 +75,19 @@ handleInput = e => {
   this.setState({ [e.target.name]: e.target.value});
 }
 
+deleteItem = () => {
+  const id = this.state.exercises.id
+  console.log(id);
+  axios
+    .delete(`https://lambdafit.herokuapp.com/exercises/${id}/`)
+    .then(res => {
+      console.log('res', res);
+      this.setState({ exercises: res.data });
+      this.props.history.push("/");
+    })
+    .catch(err => console.log('err', err));
+};
+
   render() {
     const isLoggedIn = localStorage.getItem('token');
 
@@ -91,7 +104,7 @@ handleInput = e => {
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
-          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises}  user_id={this.state.userId}/> } />
+          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteItem={this.deleteItem} user_id={this.state.userId}/> } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
           <Route exact path='/update' component={UpdateForm} />
         </div>
