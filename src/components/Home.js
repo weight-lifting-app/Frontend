@@ -31,9 +31,9 @@ class Home extends React.Component {
     // deleteExercise = exercise => {
         
     // }
-    handleDelete = e => {
+    handleDelete = (e, id) => {
         e.preventDefault();
-        this.props.deleteItem(this.props.exercises.id);
+        this.props.deleteExercise(id);
     }
 
     render() {
@@ -42,10 +42,10 @@ class Home extends React.Component {
                 <div className='exercise-list-wrapper'>
                     <h1>Workouts</h1>
                     <h3>To Add A New Workout, Navigate To Add Workout</h3>
-                    <h3>To Update An Existing Workout, Navigate To Update Workout</h3>
+                    <h3>To Update An Existing Workout, Simply Click Update Below Each Workout</h3>
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
                     {this.props.exercises.map(exercise => {
-                        if(exercise.user_id === this.props.user_id) {
+                        if(exercise.user_id === Number(this.props.user_id)) {
                                 console.log("!", exercise);
                         return <div className='exercises' key={exercise.id}>
                             <h2>{exercise.name}</h2>
@@ -54,7 +54,8 @@ class Home extends React.Component {
                             <h3>Reps: {exercise.reps}</h3>
                             <h3>Weight Lifted: {exercise.amount_lifted}</h3>
                             <h4>Last Completion: {exercise.date}</h4>
-                            <button onClick={this.handleDelete}>Delete Workout</button>
+                            <button onClick={(e) => this.handleDelete(e, exercise.id)}>Delete Workout</button>
+                            <button>Update Workout</button>
                         </div>
                     }
                     })}

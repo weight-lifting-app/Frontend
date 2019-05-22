@@ -22,7 +22,7 @@ class App extends Component {
   }
 
 
-  logOutHandler = () => {
+logOutHandler = () => {
     localStorage.clear();
     alert("Thank You For Using My Application! Come Back Soon!");
     this.props.history.push('/');
@@ -31,10 +31,18 @@ class App extends Component {
 
 
 componentDidMount() {
+  if(this.state.userId === null){
+    const id = localStorage.getItem('user_id')
+    this.setState({userId: id})
+  }
+  this.getExercises()
+}
+
+getExercises(){
   axios
-    .get("https://lambdafit.herokuapp.com/exercises")
-    .then(res => this.setState({ exercises: res.data }))
-    .catch(error => console.log(error));
+  .get("https://lambdafit.herokuapp.com/exercises")
+  .then(res => this.setState({ exercises: res.data }))
+  .catch(error => console.log(error));
 }
 
 addExercise = exercise => {
@@ -45,7 +53,10 @@ addExercise = exercise => {
       .post("https://lambdafit.herokuapp.com/exercises", ex)
       .then(res => {
       console.log(res)
-      this.setState({ exercises: res.data });
+      // const exer = [...this.state.exercises, ...res.data]
+      // console.log(exer)
+      // this.setState({ exercises: exer});
+      this.getExercises()
       this.props.history.push("/");
       })
       .catch(err => console.log(err));
@@ -62,6 +73,7 @@ addExercise = exercise => {
     .then(res => {
         console.log('result', res)
         this.setState({userId: res.data.user_id})
+        localStorage.setItem('user_id', res.data.user_id)
         localStorage.setItem('token', res.data.token)
         this.props.history.push('/')
         // window.location.reload(); 
@@ -75,18 +87,20 @@ handleInput = e => {
   this.setState({ [e.target.name]: e.target.value});
 }
 
-deleteItem = () => {
-  const id = this.state.exercises.id
-  console.log(id);
+deleteExercise = (id) => {
+  // const id = this.state.exercises.id
+  console.log(id)
   axios
-    .delete(`https://lambdafit.herokuapp.com/exercises/${id}/`)
+    .delete(`https://lambdafit.herokuapp.com/exercises/${id}`)
     .then(res => {
       console.log('res', res);
-      this.setState({ exercises: res.data });
+      // this.setState({ exercises: res.data });
+      this.getExercises();
       this.props.history.push("/");
     })
     .catch(err => console.log('err', err));
 };
+
 
   render() {
     const isLoggedIn = localStorage.getItem('token');
@@ -104,7 +118,7 @@ deleteItem = () => {
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
-          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteItem={this.deleteItem} user_id={this.state.userId}/> } />
+          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId}/> } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
           <Route exact path='/update' component={UpdateForm} />
         </div>
