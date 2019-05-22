@@ -7,9 +7,9 @@ class Register extends React.Component {
         this.state = {
             username: "",
             password: "",
-            age: undefined,
+            age: "",
             height: "",
-            weight: undefined,
+            weight: "",
             gender: "",
             email: ""
         }
@@ -34,6 +34,12 @@ class Register extends React.Component {
     submitRegister = (event) => {
         event.preventDefault();
         const user = this.state;
+        if (user.age === '' ) {
+            user.age = null;
+        }
+        if (user.weight === '' ) {
+            user.weight = null;
+        }
         axios
         .post('https://lambdafit.herokuapp.com/auth/register', user)
         .then(res => {
@@ -42,9 +48,9 @@ class Register extends React.Component {
             this.setState({
                 username: "",
                 password: "",
-                age: undefined,
+                age: "",
                 height: "",
-                weight: undefined,
+                weight: "",
                 gender: "",
                 email: ""
             })

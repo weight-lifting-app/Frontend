@@ -41,7 +41,9 @@ class Home extends React.Component {
                     <h3>To Add A New Workout, Navigate To Add Workout</h3>
                     <h3>To Update An Existing Workout, Navigate To Update Workout</h3>
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
-                    {this.props.exercises.map(exercise => (
+                    {this.props.exercises.map(exercise => {
+                            if(exercise.user_id === this.props.user_id) {
+                                console.log("!", exercise);
                         <div className='exercises' key={exercise.id}>
                             <h2>{exercise.name}</h2>
                             <h3>Body Part Targeted: {exercise.body_region}</h3>
@@ -51,7 +53,8 @@ class Home extends React.Component {
                             <h4>Last Completion: {exercise.date}</h4>
                             <button /*onClick={this.deleteHandler}*/>Delete Workout</button>
                         </div>
-                    ))}
+                    }
+                })}
                 </div>
                 <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
                 <Route exact path='/update' component={UpdateForm} />

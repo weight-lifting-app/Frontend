@@ -91,7 +91,7 @@ handleInput = e => {
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
-          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} /> } />
+          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises}  user_id={this.state.userId}/> } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
           <Route exact path='/update' component={UpdateForm} />
         </div>
