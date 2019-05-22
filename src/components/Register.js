@@ -14,16 +14,26 @@ class Register extends React.Component {
             email: ""
         }
     }
-    handleInput = e => {
-        this.setState({ [e.target.name]: e.target.value});
+    // handleInput = e => {
+    //     this.setState({ [e.target.name]: e.target.value});
+    // }
+
+
+    //add something to this...
+    handleInput = (e, radix)=> {
+        if(e.target.name === 'age' || e.target.name === 'weight'){
+            const number = parseInt(e.target.value, radix)
+            this.setState({ [e.target.name]: number});
+        }
+        else{
+            this.setState({ [e.target.name]: e.target.value});
+        }
     }
 
 
     submitRegister = (event) => {
         event.preventDefault();
         const user = this.state;
-        console.log(user);
-        console.log(this.state);
         axios
         .post('https://lambdafit.herokuapp.com/auth/register', user)
         .then(res => {

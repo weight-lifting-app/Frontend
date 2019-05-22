@@ -4,30 +4,29 @@ import axios from 'axios';
 
 
 class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            username: 'Cash Globe',
-            password: 'password'
+            username: '',
+            password: ''
         }
     }
-    handleInput = e => {
-        this.setState({ [e.target.name]: e.target.value});
-    }
 
-    submitLogin = (event) => {
-        event.preventDefault();
-        axios
-        .post('https://lambdafit.herokuapp.com/auth/login', this.state)
-        .then(res => {
-            console.log(res)
-            localStorage.setItem('token', res.data.token)
-            this.props.history.push('/home')
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
+
+    // submitLogin = (event) => {
+    //     event.preventDefault();
+    //     axios
+    //     .post('https://lambdafit.herokuapp.com/auth/login', this.state)
+    //     .then(res => {
+    //         console.log('result', res)
+    //         localStorage.setItem('token', res.data.token)
+    //         this.props.history.push('/')
+    //         window.location.reload(); 
+    //     })
+    //     .catch(err => {
+    //         console.log(err)
+    //     })
+    // }
 
 
 
@@ -43,17 +42,17 @@ class Login extends React.Component {
                         type="text" 
                         placeholder="Username"
                         name="username"
-                        value={this.state.username}
-                        onChange={this.handleInput}
+                        value={this.props.username}
+                        onChange={this.props.handleInput}
                         />
                         <input 
                         type="text"
                         placeholder='Password'
                         name="password"
-                        value={this.state.password}
-                        onChange={this.handleInput}
+                        value={this.props.password}
+                        onChange={this.props.handleInput}
                         />
-                        <button onClick={this.submitLogin}>Login</button>
+                        <button onClick={this.props.submitLogin}>Login</button>
                     </form>
                 </div>
             </div>
