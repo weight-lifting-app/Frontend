@@ -36,6 +36,10 @@ class Home extends React.Component {
         this.props.deleteExercise(id);
     }
 
+    moveToUpdate = () => {
+        this.props.history.push('/update');
+    }
+
     render() {
         return (
             <div className='container-home'>
@@ -55,7 +59,7 @@ class Home extends React.Component {
                             <h3>Weight Lifted: {exercise.amount_lifted}</h3>
                             <h4>Last Completion: {exercise.date}</h4>
                             <button onClick={(e) => this.handleDelete(e, exercise.id)}>Delete Workout</button>
-                            <button>Update Workout</button>
+                            <button onClick={this.moveToUpdate}>Update Workout</button>
                         </div>
                     }
                     })}

@@ -62,6 +62,17 @@ addExercise = exercise => {
       .catch(err => console.log(err));
   };
 
+  updateExercise = (updatedExercise, id) => {
+    axios
+    .put(`https://lambdafit.herokuapp.com/exercises/${id}`, updatedExercise)
+    .then(res => {
+      console.log('res', res)
+      this.getExercises();
+      this.props.history.push("/");
+    })
+    .catch(err => console.log('err', err))
+  }
+
   submitLogin = (event) => {
     const newUser = {
       username: this.state.username,
@@ -87,7 +98,7 @@ handleInput = e => {
   this.setState({ [e.target.name]: e.target.value});
 }
 
-deleteExercise = (id) => {
+deleteExercise = id => {
   // const id = this.state.exercises.id
   console.log(id)
   axios
@@ -100,6 +111,8 @@ deleteExercise = (id) => {
     })
     .catch(err => console.log('err', err));
 };
+
+
 
 
   render() {
@@ -120,7 +133,7 @@ deleteExercise = (id) => {
           </nav>
           <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId}/> } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
-          <Route exact path='/update' component={UpdateForm} />
+          <Route exact path='/update' render={props => <UpdateForm {...props} updateExercise={this.updateExercise}/> } />
         </div>
         ) : (
         <div className='App onBoard'>
