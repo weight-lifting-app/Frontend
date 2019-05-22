@@ -31,10 +31,18 @@ class App extends Component {
 
 
 componentDidMount() {
+  if(this.state.userId === null){
+    const id = localStorage.getItem('user_id')
+    this.setState({userId: id})
+  }
+  this.getExercises()
+}
+
+getExercises(){
   axios
-    .get("https://lambdafit.herokuapp.com/exercises")
-    .then(res => this.setState({ exercises: res.data }))
-    .catch(error => console.log(error));
+  .get("https://lambdafit.herokuapp.com/exercises")
+  .then(res => this.setState({ exercises: res.data }))
+  .catch(error => console.log(error));
 }
 
 addExercise = exercise => {
@@ -45,7 +53,10 @@ addExercise = exercise => {
       .post("https://lambdafit.herokuapp.com/exercises", ex)
       .then(res => {
       console.log(res)
-      this.setState({ exercises: res.data });
+      // const exer = [...this.state.exercises, ...res.data]
+      // console.log(exer)
+      // this.setState({ exercises: exer});
+      this.getExercises()
       this.props.history.push("/");
       })
       .catch(err => console.log(err));
@@ -62,6 +73,7 @@ addExercise = exercise => {
     .then(res => {
         console.log('result', res)
         this.setState({userId: res.data.user_id})
+        localStorage.setItem('user_id', res.data.user_id)
         localStorage.setItem('token', res.data.token)
         this.props.history.push('/')
         // window.location.reload(); 

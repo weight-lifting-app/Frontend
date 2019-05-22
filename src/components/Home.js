@@ -42,18 +42,26 @@ class Home extends React.Component {
                     <h3>To Update An Existing Workout, Navigate To Update Workout</h3>
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
                     {this.props.exercises.map(exercise => {
-                            if(exercise.user_id === this.props.user_id) {
-                                console.log("!", exercise);
-                        <div className='exercises' key={exercise.id}>
-                            <h2>{exercise.name}</h2>
-                            <h3>Body Part Targeted: {exercise.body_region}</h3>
-                            <h3>Sets: {exercise.sets}</h3>
-                            <h3>Reps: {exercise.reps}</h3>
-                            <h3>Weight Lifted: {exercise.amount_lifted}</h3>
-                            <h4>Last Completion: {exercise.date}</h4>
-                            <button /*onClick={this.deleteHandler}*/>Delete Workout</button>
-                        </div>
-                    }
+                        console.log("id", exercise.user_id, Number(this.props.user_id))
+                        if(exercise.user_id === Number(this.props.user_id)) {
+                            console.log("!", exercise.name);
+                            return (
+                            <div className='exercises' key={exercise.id}>
+                                <h2>{exercise.name}</h2>
+                                <h3>Body Part Targeted: {exercise.body_region}</h3>
+                                <h3>Sets: {exercise.sets}</h3>
+                                <h3>Reps: {exercise.reps}</h3>
+                                <h3>Weight Lifted: {exercise.amount_lifted}</h3>
+                                <h4>Last Completion: {exercise.date}</h4>
+                                <button /*onClick={this.deleteHandler}*/>Delete Workout</button>
+                            </div>
+                            )
+                          }
+                        else{
+                            return
+                        }
+
+                        
                 })}
                 </div>
                 <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
