@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 class Register extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             username: "",
             password: "",
@@ -11,7 +11,7 @@ class Register extends React.Component {
             height: "",
             weight: "",
             gender: "",
-            email: ""
+            email: "",
         }
     }
     // handleInput = e => {
@@ -31,33 +31,48 @@ class Register extends React.Component {
     }
 
 
-    submitRegister = (event) => {
-        event.preventDefault();
-        const user = this.state;
-        if (user.age === '' ) {
-            user.age = null;
-        }
-        if (user.weight === '' ) {
-            user.weight = null;
-        }
-        axios
-        .post('https://lambdafit.herokuapp.com/auth/register', user)
-        .then(res => {
-            localStorage.setItem('token', res.data.token);
-            console.log('then', res);
-            this.setState({
-                username: "",
-                password: "",
-                age: "",
-                height: "",
-                weight: "",
-                gender: "",
-                email: ""
-            })
-            this.props.history.push('/login')
+    // submitRegister = (event) => {
+    //     event.preventDefault();
+    //     const user = this.state;
+    //     if (user.age === '' ) {
+    //         user.age = null;
+    //     }
+    //     if (user.weight === '' ) {
+    //         user.weight = null;
+    //     }
+    //     axios
+    //     .post('https://lambdafit.herokuapp.com/auth/register', user)
+    //     .then(res => {
+    //         localStorage.setItem('token', res.data.token);
+    //         localStorage.setItem('user_id', res.data.registered.id)
+    //         console.log('then', res);
+    //         this.setState({
+    //             username: "",
+    //             password: "",
+    //             age: "",
+    //             height: "",
+    //             weight: "",
+    //             gender: "",
+    //             email: ""
+    //         })
+    //         this.props.history.push('/')
+    //         this.setState({userId: id})
+    //     })
+    //     .catch(err => console.log('err', err))
+    // };
+
+    handleRegister = e => {
+        this.props.submitRegister(e, this.state)
+        this.setState({
+            username: "",
+            password: "",
+            age: "",
+            height: "",
+            weight: "",
+            gender: "",
+            email: ""
         })
-        .catch(err => console.log('err', err))
-    };
+    }
 
     render() {
         return (
@@ -116,7 +131,7 @@ class Register extends React.Component {
                         value={this.state.email}
                         onChange={this.handleInput}
                         />
-                        <button onClick={(e) => this.submitRegister(e)}>Register</button>
+                        <button onClick={(e) => this.handleRegister(e)}>Register</button>
                     </form>
                 </div>
             </div>

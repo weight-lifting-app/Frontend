@@ -31,7 +31,7 @@ logOutHandler = () => {
 
 
 componentDidMount() {
-  if(this.state.userId === null){
+  if(!this.state.userId){
     const id = localStorage.getItem('user_id')
     this.setState({userId: id})
   }
@@ -63,6 +63,8 @@ addExercise = exercise => {
   };
 
   updateExercise = (updatedExercise, id) => {
+    console.log('exercise', updatedExercise)
+    console.log('id', id)
     axios
     .put(`https://lambdafit.herokuapp.com/exercises/${id}`, updatedExercise)
     .then(res => {
@@ -93,6 +95,26 @@ addExercise = exercise => {
         console.log(err)
     })
 }
+
+submitRegister = (event, user) => {
+  event.preventDefault();
+  if (user.age === '' ) {
+      user.age = null;
+  }
+  if (user.weight === '' ) {
+      user.weight = null;
+  }
+  axios
+  .post('https://lambdafit.herokuapp.com/auth/register', user)
+  .then(res => {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('user_id', res.data.registered.id)
+      console.log('then', res);
+      this.props.history.push('/')
+      this.setState({userId: res.data.registered.id})
+  })
+  .catch(err => console.log('err', err))
+};
 
 handleInput = e => {
   this.setState({ [e.target.name]: e.target.value});
@@ -131,9 +153,9 @@ deleteExercise = id => {
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
-          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId}/> } />
+          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId} updateExercise={this.updateExercise} />  } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
-          <Route exact path='/update' render={props => <UpdateForm {...props} updateExercise={this.updateExercise}/> } />
+          <Route exact path='/update' render={props => <UpdateForm {...props}/> } />
         </div>
         ) : (
         <div className='App onBoard'>
@@ -147,7 +169,7 @@ deleteExercise = id => {
             </Link>
           </div>
           <Route exact path="/login" render={props => <Login {...props} username={this.state.username} password={this.state.password} submitLogin={this.submitLogin} handleInput={this.handleInput} /> } />
-          <Route exact path="/register" component={Register} />
+         <Route exact path="/register" render={props => <Register {...props} userId={this.state.userId} submitRegister={this.submitRegister} /> } />
           
         </div>
         )}

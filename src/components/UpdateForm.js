@@ -14,16 +14,18 @@ class UpdateForm extends React.Component {
         }
     }
 
-    handleInput = e => {
-        this.setState({ [e.target.name]: e.target.value});
-    }
+handleInput = e => {
+    this.setState({ [e.target.name]: e.target.value});
+}
 
 
   handleUpdate = e => {
     e.preventDefault();
-    // this.props.addExercise(this.state);
-  }
+    this.props.updateExercise(this.state, this.props.selected);
+  } 
+
     render() {
+        console.log(this.props)
         return (
             <div className="add-form-container">
                     <form>
