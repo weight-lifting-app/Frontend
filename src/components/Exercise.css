@@ -1,0 +1,55 @@
+.exercise-container{
+    height: 500px;
+}
+.ex-bar{
+    width: 400px;
+    margin: 25px 50px;
+}
+.ex-card{
+    width: 752px;
+    height: auto;
+    background: pink;
+    margin: 35px;
+}
+
+.ex-tab{
+    text-align: left;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.ex-btn{
+    background: #BB1333;
+    border-radius: 24px;
+}
+.ex-btn-2{
+    background: #FFFFFF;
+    border: 2px solid #BB1333;
+    border-radius: 24px;
+}
+.ex-title{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 16px;
+    /* identical to box height, or 33% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.ex-body{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 16px;
+    /* identical to box height, or 67% */
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

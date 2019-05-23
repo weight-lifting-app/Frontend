@@ -5,13 +5,16 @@ import axios from 'axios';
 import {Route} from 'react-router-dom';
 import AddForm from './AddForm';
 import Card from './Card';
+import ExerciseBar from './ExerciseBar';
+import ExerciseCard from './ExerciseCard';
+import './Exercise.css'
 
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            selected: '',
+            selected: {},
             isEditing: false,
             name: '',
             body_region: '',
@@ -73,6 +76,17 @@ class Home extends React.Component {
     //     e.preventDefault();
     //     this.props.updateExercise(updateChanges, id);
     //   } 
+    selectExercise = (e) =>{
+        const target = Number(e.target.id)
+        let arr = []
+        let i
+        for(i=0; i < this.props.exercises.length; i++){
+            if (this.props.exercises[i].id === target){
+                arr.push(this.props.exercises[i])
+            }
+        }
+       this.setState({selected:arr[0]})
+    }
 
     render() {
         return (
@@ -82,11 +96,11 @@ class Home extends React.Component {
                     <h3>To Add A New Workout, Navigate To Add Workout</h3>
                     <h3>To Update An Existing Workout, Simply Click Update Below Each Workout</h3>
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
-                    {this.props.exercises.map(exercise => {
-                        if(exercise.user_id === Number(this.props.user_id)) {
-                            return <Card deleteExercise={this.props.deleteExercise} updateExercise={this.props.updateExercise} exercise={exercise} key={exercise.id}/>
-                        }} 
-                    )}
+                    <section className="flex w-4/5 mx-auto bg-red-900 exercise-container space-between">
+                        <ExerciseBar {...this.props} selectExercise={this.selectExercise}/>
+                        <ExerciseCard {...this.props} selected={this.state.selected}/>
+                    </section>
+                    
                 </div>
                 <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
             </div>
