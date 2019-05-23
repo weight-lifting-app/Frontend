@@ -9,6 +9,20 @@ import Home from './Home';
 import AddForm from './AddForm'
 import styled from 'styled-components'
 
+const AppDiv = styled.div`
+font-family: 'Montserrat', sans-serif;
+`
+const OnBoardButtons = styled.button`
+background: #BB1333;
+width: 150px;
+height: 50px;
+border-radius: 5px;
+color: #FFFFFF;
+font-size: 14px;
+margin: 10px;
+`
+
+
 
 class App extends Component {
   constructor() {
@@ -99,8 +113,15 @@ addExercise = exercise => {
         this.setState({userId: res.data.user_id})
         localStorage.setItem('user_id', res.data.user_id)
         localStorage.setItem('token', res.data.token)
+        // const requestConfig = {
+        //   headers: {
+        //     authorization: res.data,
+        //   }
+        // }
+        // this.setState({headers: requestConfig})
         this.props.history.push('/')
-        // window.location.reload(); 
+        // Change after styling 
+        window.location.reload(); 
     })
     .catch(err => {
         console.log(err)
@@ -152,7 +173,7 @@ deleteExercise = id => {
     const isLoggedIn = localStorage.getItem('token');
 
     return (
-      <div className='App'>
+      <AppDiv>
         {isLoggedIn ? (
           <div>
           <nav>
@@ -170,11 +191,12 @@ deleteExercise = id => {
         <div className='App onBoard'>
           <h1>Welcome To LambdaFit</h1>
           <div className='home-buttons'>
+            <h3>Please Login Or Register</h3>
             <Link to="/login">
-              <button className="btn-login">Login</button>
+              <OnBoardButtons>Login</OnBoardButtons>
             </Link>
             <Link to="/register">
-              <button className="btn-register">Register</button>
+              <OnBoardButtons>Register</OnBoardButtons>
             </Link>
           </div>
           <Route exact path="/login" render={props => <Login {...props} username={this.state.username} password={this.state.password} submitLogin={this.submitLogin} handleInput={this.handleInput} /> } />
@@ -182,7 +204,7 @@ deleteExercise = id => {
           
         </div>
         )}
-      </div>
+      </AppDiv>
     );
   }
 }
