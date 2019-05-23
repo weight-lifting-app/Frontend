@@ -87,7 +87,6 @@ class Home extends React.Component {
                 arr.push(this.props.exercises[i])
             }
         }
-    
        this.setState({
            selected:arr[0],
            action: true
