@@ -74,7 +74,7 @@ class Login extends React.Component {
         return (
             <LoginWrapper>
                 <div>
-                    <h4>Please Login With Your Username and Password</h4>
+                    <h2>Login With Your Username and Password</h2>
                 </div>
                 <div>
                     <FormWrapper>
