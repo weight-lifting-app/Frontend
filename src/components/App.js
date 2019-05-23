@@ -11,6 +11,7 @@ import styled from 'styled-components'
 
 const AppDiv = styled.div`
 font-family: 'Montserrat', sans-serif;
+
 `
 const OnBoardButtons = styled.button`
 background: #BB1333;
