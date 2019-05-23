@@ -25,8 +25,6 @@ const FormWrapper = styled.form`
     width: 300px;
     align-items: center;
     
-    
-    
 `
 
 const BoxDiv = styled.div`
@@ -53,9 +51,7 @@ const Button = styled.button`
 
 `
 
-const WelcomeDiv = styled.div`
 
-`
 
 
 class Login extends React.Component {
