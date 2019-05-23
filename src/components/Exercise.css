@@ -19,6 +19,10 @@
     align-items: center;
     padding: 0 25px;
 }
+.ex-tab-main{
+    height: 85px;
+    font-size: 1.5rem;
+}
 
 .ex-btn{
     background: #BB1333;
@@ -34,9 +38,6 @@
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
-    line-height: 16px;
-    /* identical to box height, or 33% */
-
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;

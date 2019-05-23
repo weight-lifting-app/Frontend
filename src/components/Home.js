@@ -21,7 +21,8 @@ class Home extends React.Component {
             amount_lifted: '',
             reps: '',
             sets: '',
-            date: ''
+            date: '',
+            action: false
         }
     }
 
@@ -85,7 +86,16 @@ class Home extends React.Component {
                 arr.push(this.props.exercises[i])
             }
         }
-       this.setState({selected:arr[0]})
+    
+       this.setState({
+           selected:arr[0],
+           action: true
+        })
+    }
+    rebootExercise = () =>{
+        this.setState({
+            action: false
+        })
     }
 
     render() {
@@ -98,7 +108,7 @@ class Home extends React.Component {
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
                     <section className="flex w-4/5 mx-auto bg-red-900 exercise-container space-between">
                         <ExerciseBar {...this.props} selectExercise={this.selectExercise}/>
-                        <ExerciseCard {...this.props} selected={this.state.selected}/>
+                        <ExerciseCard {...this.props} selected={this.state.selected} action={this.state.action} updateExericise={this.props.updateExericise} deleteExercise={this.props.deleteExercise} rebootExercise={this.rebootExercise}/>
                     </section>
                     
                 </div>
