@@ -1,5 +1,6 @@
 .exercise-container{
     height: 500px;
+    font-family: 'Montserrat', sans-serif;
 }
 .ex-bar{
     width: 400px;
@@ -34,7 +35,7 @@
     border-radius: 24px;
 }
 .ex-title{
-    font-family: Montserrat;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 48px;

@@ -102,7 +102,7 @@ class Register extends React.Component {
                 </div>
                 <FormWrapper>
                     <BoxDiv>
-                        <label>Login</label>
+                        <label>Username</label>
                         <Input 
                         type="text" 
                         placeholder="Username"
