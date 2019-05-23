@@ -59,10 +59,7 @@ class Home extends React.Component {
         return (
             <div className='container-home'>
                 <div className='exercise-list-wrapper'>
-                    <h1>Workouts</h1>
-                    <h3>To Add A New Workout, Navigate To Add Workout</h3>
-                    <h3>To Update An Existing Workout, Simply Click Update Below Each Workout</h3>
-                    <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
+                    <h1>Let's Get Active!!!</h1>
                     <section className="flex w-4/5 mx-auto bg-red-900 exercise-container space-between">
                         <ExerciseBar {...this.props} selectExercise={this.selectExercise} startAdding={this.startAdding}/>
                         <ExerciseCard {...this.props} isAdding={this.state.isAdding}selected={this.state.selected} action={this.state.action} updateExercise={this.props.updateExercise} deleteExercise={this.props.deleteExercise} rebootExercise={this.rebootExercise} addExercise={this.props.addExercise}/>

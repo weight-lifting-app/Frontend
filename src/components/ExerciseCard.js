@@ -106,7 +106,7 @@ this.props.rebootExercise()
                     </div>
                 </div>
 
-          <button className="w-2/5 py-2 bg-green-400 hover:bg-green-600 rounded text-xl font-medium text-white" onClick={(e) => this.handleAdd(e)}>Add Exercise</button>
+          <button className="addBtn g-transparent  font-semibold hover:text-white border hover:border-transparent" onClick={(e) => this.handleAdd(e)}>Add Exercise</button>
         </section>
         )
         :
@@ -146,7 +146,7 @@ this.props.rebootExercise()
                     </div>
                 </div>
 
-          <button className="w-2/5 py-2 bg-green-400 hover:bg-green-600 rounded text-xl font-medium text-white" onClick={(e) => this.handleUpdate(e, this.props.selected.id)}>Submit Updates</button>
+          <button className="addBtn g-transparent  font-semibold hover:text-white border hover:border-transparent" onClick={(e) => this.handleUpdate(e, this.props.selected.id)}>Submit Updates</button>
         </section>
         )
         :
