@@ -163,8 +163,8 @@ deleteExercise = id => {
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
-          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId} updateExercise={this.updateExercise} />  } />
-          <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
+          <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId} updateExercise={this.updateExercise} addExercise={this.addExercise} />  } />
+          <Route exact path='/add' render={props => <AddForm {...props} /> } />
         </div>
         ) : (
         <div className='App onBoard'>

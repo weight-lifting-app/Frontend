@@ -22,7 +22,8 @@ class Home extends React.Component {
             reps: '',
             sets: '',
             date: '',
-            action: false
+            action: false,
+            isAdding: false
         }
     }
 
@@ -94,7 +95,15 @@ class Home extends React.Component {
     }
     rebootExercise = () =>{
         this.setState({
-            action: false
+            action: false,
+            isAdding: false,
+            isEditing: false,
+        })
+    }
+    startAdding = () =>{
+        this.setState({
+            isAdding: true,
+            action: true
         })
     }
 
@@ -107,12 +116,12 @@ class Home extends React.Component {
                     <h3>To Update An Existing Workout, Simply Click Update Below Each Workout</h3>
                     <h3>To Delete An Existing Workout, Simply Click Delete Below Each Workout</h3>
                     <section className="flex w-4/5 mx-auto bg-red-900 exercise-container space-between">
-                        <ExerciseBar {...this.props} selectExercise={this.selectExercise}/>
-                        <ExerciseCard {...this.props} selected={this.state.selected} action={this.state.action} updateExericise={this.props.updateExericise} deleteExercise={this.props.deleteExercise} rebootExercise={this.rebootExercise}/>
+                        <ExerciseBar {...this.props} selectExercise={this.selectExercise} startAdding={this.startAdding}/>
+                        <ExerciseCard {...this.props} isAdding={this.state.isAdding}selected={this.state.selected} action={this.state.action} updateExercise={this.props.updateExercise} deleteExercise={this.props.deleteExercise} rebootExercise={this.rebootExercise} addExercise={this.props.addExercise}/>
                     </section>
                     
                 </div>
-                <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
+                {/* <Route exact path='/add' render={props => <AddForm {...props} /> } /> */}
             </div>
             )
         }
