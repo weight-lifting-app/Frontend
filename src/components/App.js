@@ -7,7 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 import AddForm from './AddForm'
-import UpdateForm from './UpdateForm'
+import styled from 'styled-components'
 
 
 class App extends Component {
@@ -17,7 +17,8 @@ class App extends Component {
       exercises: [],
       userId: null,
       username: '',
-      password: ''
+      password: '',
+      headers: {}
     }
   }
 
@@ -35,12 +36,22 @@ componentDidMount() {
     const id = localStorage.getItem('user_id')
     this.setState({userId: id})
   }
-  this.getExercises()
+  const requestConfig = {
+      headers: {
+        authorization: localStorage.getItem('token'),
+      }
+    }
+    this.setState({headers: requestConfig})
+  this.getExercises(requestConfig)
 }
 
-getExercises(){
+getExercises(requestConfig){
+  console.log(requestConfig)
+  if (requestConfig === null) {
+    requestConfig = this.state.headers
+  }
   axios
-  .get("https://lambdafit.herokuapp.com/exercises")
+  .get("https://lambdafit.herokuapp.com/exercises", requestConfig)
   .then(res => this.setState({ exercises: res.data }))
   .catch(error => console.log(error));
 }
@@ -50,13 +61,13 @@ addExercise = exercise => {
   let ex = {...exercise, 'user_id':this.state.userId}
   console.log(ex)
   axios
-      .post("https://lambdafit.herokuapp.com/exercises", ex)
+      .post("https://lambdafit.herokuapp.com/exercises", ex, this.state.headers)
       .then(res => {
       console.log(res)
       // const exer = [...this.state.exercises, ...res.data]
       // console.log(exer)
       // this.setState({ exercises: exer});
-      this.getExercises()
+      this.getExercises(this.state.headers)
       this.props.history.push("/");
       })
       .catch(err => console.log(err));
@@ -66,10 +77,10 @@ addExercise = exercise => {
     console.log('exercise', updatedExercise)
     console.log('id', id)
     axios
-    .put(`https://lambdafit.herokuapp.com/exercises/${id}`, updatedExercise)
+    .put(`https://lambdafit.herokuapp.com/exercises/${id}`, updatedExercise, this.state.headers)
     .then(res => {
       console.log('res', res)
-      this.getExercises();
+      this.getExercises(this.state.headers);
       this.props.history.push("/");
     })
     .catch(err => console.log('err', err))
@@ -124,11 +135,11 @@ deleteExercise = id => {
   // const id = this.state.exercises.id
   console.log(id)
   axios
-    .delete(`https://lambdafit.herokuapp.com/exercises/${id}`)
+    .delete(`https://lambdafit.herokuapp.com/exercises/${id}`, this.state.headers)
     .then(res => {
       console.log('res', res);
       // this.setState({ exercises: res.data });
-      this.getExercises();
+      this.getExercises(this.state.headers);
       this.props.history.push("/");
     })
     .catch(err => console.log('err', err));
@@ -149,13 +160,11 @@ deleteExercise = id => {
             <div className='nav-links'>
               <NavLink to='/'>Home</NavLink>
               <NavLink to='/add'>Add Workout</NavLink>
-              <NavLink to='/update'>Update Workout</NavLink>
               <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
             </div>
           </nav>
           <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId} updateExercise={this.updateExercise} />  } />
           <Route exact path='/add' render={props => <AddForm {...props} addExercise={this.addExercise}/> } />
-          <Route exact path='/update' render={props => <UpdateForm {...props}/> } />
         </div>
         ) : (
         <div className='App onBoard'>
