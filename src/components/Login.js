@@ -38,6 +38,7 @@ const Input = styled.input`
     height: 25px;
     border-radius: 5px;
     margin: 10px 0 30px 0;
+    border: 1px solid red;
 
 `
 
