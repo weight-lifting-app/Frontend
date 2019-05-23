@@ -11,6 +11,7 @@ import styled from 'styled-components'
 
 const AppDiv = styled.div`
 font-family: 'Montserrat', sans-serif;
+background: #F0F1F3;
 
 `
 const OnBoardButtons = styled.button`
@@ -178,7 +179,7 @@ deleteExercise = id => {
         {isLoggedIn ? (
           <div>
           <nav>
-            <h1>Workout Journal</h1>
+            <h1>Lambda Fit</h1>
             <div className='nav-links'>
               <NavLink to='/'>Home</NavLink>
               <NavLink to='/add'>Add Workout</NavLink>

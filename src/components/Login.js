@@ -9,9 +9,11 @@ const LoginWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: 10px 5px 5px grey;
-    margin: 10px;
+    margin: 0 auto;
     padding: 10px;
     color: #303030;
+    border: 1px solid #303030;
+    
     
     
 `
@@ -38,7 +40,6 @@ const Input = styled.input`
     height: 25px;
     border-radius: 5px;
     margin: 10px 0 30px 0;
-    border: 1px solid red;
 
 `
 
@@ -51,6 +52,8 @@ const Button = styled.button`
     font-size: 14px;
 
 `
+
+
 
 
 
@@ -71,7 +74,6 @@ class Login extends React.Component {
         return (
             <LoginWrapper>
                 <div>
-                    <h2>Hello</h2>
                     <h4>Please Login With Your Username and Password</h4>
                 </div>
                 <div>
