@@ -7,7 +7,17 @@ import AddForm from './AddForm';
 import ExerciseBar from './ExerciseBar';
 import ExerciseCard from './ExerciseCard';
 import './Exercise.css'
+import styled from 'styled-components';
 
+
+const HomeDiv = styled.div`
+    text-align: center;
+`
+const LetsGetMoving = styled.h1`
+    font-size: 45px;
+    background: #BB1333;
+    color: white;
+`
 
 class Home extends React.Component {
     constructor(props) {
@@ -58,14 +68,14 @@ class Home extends React.Component {
     render() {
         return (
             <div className='container-home'>
-                <div className='exercise-list-wrapper'>
-                    <h1>Let's Get Active!!!</h1>
-                    <section className="flex w-4/5 mx-auto bg-red-900 exercise-container space-between">
+                <HomeDiv>
+                    <LetsGetMoving>Let's Get Moving</LetsGetMoving>
+                    <section className="backGround flex w-4/5 mx-auto exercise-container space-between">
                         <ExerciseBar {...this.props} selectExercise={this.selectExercise} startAdding={this.startAdding}/>
                         <ExerciseCard {...this.props} isAdding={this.state.isAdding}selected={this.state.selected} action={this.state.action} updateExercise={this.props.updateExercise} deleteExercise={this.props.deleteExercise} rebootExercise={this.rebootExercise} addExercise={this.props.addExercise}/>
                     </section>
                     
-                </div>
+                </HomeDiv>
                 {/* <Route exact path='/add' render={props => <AddForm {...props} /> } /> */}
             </div>
             )

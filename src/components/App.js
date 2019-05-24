@@ -11,11 +11,12 @@ import styled from 'styled-components'
 
 const AppDiv = styled.div`
 font-family: 'Montserrat', sans-serif;
-background: #D3D4D8;
+background: #8B90A0;
 
 `
 const Title = styled.h1`
 font-size: 30px;
+font-weight: bold;
 `
 const OnBoardButtons = styled.button`
 background: #BB1333;
@@ -216,9 +217,12 @@ deleteExercise = id => {
 const NavMain = styled.nav`
   display: flex;
   justify-content: space-between;
+  background: white;
 `
 const NavDiv = styled.div`
+  display: flex;
   margin: 0 30px;
+  align-items: center;
 `
 const NavButton = styled.button`
 width: 75px;
@@ -227,6 +231,7 @@ background: #BB1333;
 color: white;
 border-radius: 5px;
 font-size: 14px;
+margin: 0 10px;
 `
 
 

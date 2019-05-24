@@ -66,8 +66,10 @@
     background-color: #BB1333;
     width: 150px;
     height: 50px;
+    border-radius: 5px;
 }
 
-.otherBtn {
-
+.backGround {
+    background: #8C142B;
+    border-radius: 5px;
 }
