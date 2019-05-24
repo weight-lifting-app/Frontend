@@ -1,5 +1,6 @@
 .exercise-container{
     height: 500px;
+    font-family: 'Montserrat', sans-serif;
 }
 .ex-bar{
     width: 400px;
@@ -8,7 +9,7 @@
 .ex-card{
     width: 752px;
     height: auto;
-    background: pink;
+    background: #D3D4D8;
     margin: 35px;
 }
 
@@ -26,15 +27,19 @@
 
 .ex-btn{
     background: #BB1333;
+    border: 2px solid white;
     border-radius: 24px;
+    padding: 5px;
+    margin: 5px;
 }
 .ex-btn-2{
-    background: #FFFFFF;
+    background: white;
     border: 2px solid #BB1333;
     border-radius: 24px;
+    padding: 5px;
+    margin: 5px;
 }
 .ex-title{
-    font-family: Montserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 48px;
@@ -45,7 +50,7 @@
 }
 
 .ex-body{
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 24px;
@@ -53,4 +58,18 @@
     /* identical to box height, or 67% */
     letter-spacing: 0.04em;
     text-transform: uppercase;
+}
+
+.addBtn {
+    padding: 5px;
+    margin: 3px;
+    background-color: #BB1333;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.backGround {
+    background: #8C142B;
+    border-radius: 5px;
 }

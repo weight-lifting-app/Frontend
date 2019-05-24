@@ -15,6 +15,7 @@ export default class ExerciseCard extends Component {
       sets: this.props.selected.sets,
       date: this.props.selected.date
   }
+
   }
 
   handleInput = e => {
@@ -35,6 +36,7 @@ export default class ExerciseCard extends Component {
     this.setState({
         isEditing: false
     })
+    this.props.rebootExercise()
 } 
 moveToUpdate = () => {
   const activeState = this.state.isEditing;
@@ -104,7 +106,7 @@ this.props.rebootExercise()
                     </div>
                 </div>
 
-          <button className="w-2/5 py-2 bg-green-400 hover:bg-green-600 rounded text-xl font-medium text-white" onClick={(e) => this.handleAdd(e)}>Submit Updates</button>
+          <button className="addBtn g-transparent  font-semibold hover:text-white border hover:border-transparent" onClick={(e) => this.handleAdd(e)}>Add Exercise</button>
         </section>
         )
         :
@@ -144,7 +146,7 @@ this.props.rebootExercise()
                     </div>
                 </div>
 
-          <button className="w-2/5 py-2 bg-green-400 hover:bg-green-600 rounded text-xl font-medium text-white" onClick={(e) => this.handleAdd(e, this.props.selected.id)}>Submit Updates</button>
+          <button className="addBtn g-transparent  font-semibold hover:text-white border hover:border-transparent" onClick={(e) => this.handleUpdate(e, this.props.selected.id)}>Submit Updates</button>
         </section>
         )
         :

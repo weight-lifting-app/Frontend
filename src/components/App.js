@@ -11,7 +11,12 @@ import styled from 'styled-components'
 
 const AppDiv = styled.div`
 font-family: 'Montserrat', sans-serif;
+background: #8B90A0;
 
+`
+const Title = styled.h1`
+font-size: 30px;
+font-weight: bold;
 `
 const OnBoardButtons = styled.button`
 background: #BB1333;
@@ -177,22 +182,21 @@ deleteExercise = id => {
       <AppDiv>
         {isLoggedIn ? (
           <div>
-          <nav>
-            <h1>Workout Journal</h1>
-            <div className='nav-links'>
-              <NavLink to='/'>Home</NavLink>
-              <NavLink to='/add'>Add Workout</NavLink>
-              <NavLink to='/' onClick={this.logOutHandler}>Log Out</NavLink>
-            </div>
-          </nav>
+          <NavMain>
+            <Title>LambdaFIT</Title>
+            <NavDiv>
+              <NavLink to='/'><NavButton>Home</NavButton></NavLink>{' '}
+              <NavLink to='/' onClick={this.logOutHandler}><NavButton>Log Out</NavButton></NavLink>
+            </NavDiv>
+          </NavMain>
           <Route exact path="/" render={props => <Home {...props} exercises={this.state.exercises} deleteExercise={this.deleteExercise} user_id={this.state.userId} updateExercise={this.updateExercise} addExercise={this.addExercise} />  } />
           <Route exact path='/add' render={props => <AddForm {...props} /> } />
         </div>
         ) : (
         <div className='App onBoard'>
-          <h1>Welcome To LambdaFit</h1>
+          <Title>Welcome To LambdaFIT</Title>
           <div className='home-buttons'>
-            <h3>Please Login Or Register</h3>
+            <Title>Please Login Or Register</Title>
             <Link to="/login">
               <OnBoardButtons>Login</OnBoardButtons>
             </Link>
@@ -209,5 +213,26 @@ deleteExercise = id => {
     );
   }
 }
+
+const NavMain = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  background: white;
+`
+const NavDiv = styled.div`
+  display: flex;
+  margin: 0 30px;
+  align-items: center;
+`
+const NavButton = styled.button`
+width: 75px;
+height: 30px;
+background: #BB1333;
+color: white;
+border-radius: 5px;
+font-size: 14px;
+margin: 0 10px;
+`
+
 
 export default withRouter(App);

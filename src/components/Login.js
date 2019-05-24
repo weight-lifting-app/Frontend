@@ -9,9 +9,11 @@ const LoginWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: 10px 5px 5px grey;
-    margin: 10px;
+    margin: 0 auto;
     padding: 10px;
     color: #303030;
+    border: 1px solid #303030;
+    
     
     
 `
@@ -24,8 +26,6 @@ const FormWrapper = styled.form`
     padding-top: 10px;
     width: 300px;
     align-items: center;
-    
-    
     
 `
 
@@ -53,9 +53,9 @@ const Button = styled.button`
 
 `
 
-const WelcomeDiv = styled.div`
 
-`
+
+
 
 
 class Login extends React.Component {
@@ -74,13 +74,12 @@ class Login extends React.Component {
         return (
             <LoginWrapper>
                 <div>
-                    <h2>Hello</h2>
-                    <h4>Please Login With Your Username and Password</h4>
+                    <h2>Login With Your Username and Password</h2>
                 </div>
                 <div>
                     <FormWrapper>
                             <BoxDiv>
-                                <label>Login</label>
+                                <label>Username</label>
                                 <Input 
                                 type="text" 
                                 placeholder="Username"
